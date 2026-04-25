@@ -56,9 +56,16 @@ body {
 .bg-orb-2 { width: 500px; height: 500px; top: 40%; right: -200px; background: radial-gradient(circle, #7c3aed, transparent 70%); animation: orbFloat 10s ease-in-out infinite alternate; }
 .bg-orb-3 { width: 400px; height: 400px; bottom: -150px; left: 30%; background: radial-gradient(circle, #00d2ff, transparent 70%); animation: orbFloat 14s ease-in-out infinite alternate-reverse; }
 .grid-bg {
-  position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(0,210,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,210,255,0.03) 1px, transparent 1px);
+  position: absolute; inset: -100% -50%;
+  background-image: linear-gradient(rgba(0,210,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,210,255,0.04) 1px, transparent 1px);
   background-size: 60px 60px;
+  transform: perspective(600px) rotateX(30deg) scale(1.4);
+  transform-origin: 50% 60%;
+  animation: gridDrift 20s linear infinite;
+}
+@keyframes gridDrift {
+  from { background-position: 0 0; }
+  to   { background-position: 0 60px; }
 }
 
 @keyframes orbFloat { from { transform: translateY(0px) scale(1); } to { transform: translateY(40px) scale(1.05); } }
@@ -496,6 +503,219 @@ footer {
 
 @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
+/* ═══════════════════════════════════════
+   3D EFFECTS
+═══════════════════════════════════════ */
+
+/* ── Hero card continuous 3D float ── */
+@keyframes heroFloat3d {
+  0%   { transform: perspective(900px) rotateX(3deg)  rotateY(-4deg) translateZ(0px);  }
+  25%  { transform: perspective(900px) rotateX(-2deg) rotateY(3deg)  translateZ(14px); }
+  50%  { transform: perspective(900px) rotateX(4deg)  rotateY(2deg)  translateZ(7px);  }
+  75%  { transform: perspective(900px) rotateX(-1deg) rotateY(-3deg) translateZ(10px); }
+  100% { transform: perspective(900px) rotateX(3deg)  rotateY(-4deg) translateZ(0px);  }
+}
+.hero-card-main {
+  animation: heroFloat3d 9s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+/* ── 3D depth on hero name ── */
+.hero-name .line1 {
+  text-shadow:
+    0 1px 0 rgba(180,210,255,0.5),
+    0 2px 0 rgba(80,140,255,0.25),
+    0 4px 0 rgba(0,0,0,0.3),
+    0 8px 20px rgba(0,0,0,0.4),
+    0 16px 40px rgba(0,0,0,0.2);
+}
+.hero-name .line2 {
+  filter:
+    drop-shadow(0 2px 0 rgba(0,120,200,0.5))
+    drop-shadow(0 6px 16px rgba(0,210,255,0.35))
+    drop-shadow(0 12px 32px rgba(58,123,213,0.2));
+}
+
+/* ── 3D depth on section titles ── */
+.sec-title {
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.1),
+    0 2px 0 rgba(255,255,255,0.05),
+    0 4px 12px rgba(0,0,0,0.5),
+    0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* ── Tiltable card base (JS drives the actual transform) ── */
+.skill-group, .highlight-card, .exp-card, .project-card,
+.stats-big-card, .award-card, .arch-info-card, .stat-card,
+.contact-card, .hero-card-main {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* ── 3D glare overlay (shared across cards) ── */
+.skill-group, .project-card, .stats-big-card, .exp-card, .award-card {
+  position: relative;
+}
+.skill-group .card-glare,
+.project-card .card-glare,
+.stats-big-card .card-glare,
+.exp-card .card-glare,
+.award-card .card-glare {
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--gx,50%) var(--gy,0%), rgba(255,255,255,0.10) 0%, transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2;
+}
+.skill-group:hover .card-glare,
+.project-card:hover .card-glare,
+.stats-big-card:hover .card-glare,
+.exp-card:hover .card-glare,
+.award-card:hover .card-glare { opacity: 1; }
+
+/* ── Deep hover shadows ── */
+.skill-group:hover {
+  box-shadow:
+    0 25px 65px rgba(0,0,0,0.65),
+    0 0 0 1px rgba(0,210,255,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.project-card:hover {
+  box-shadow:
+    0 40px 90px rgba(0,0,0,0.75),
+    0 0 40px rgba(0,210,255,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
+.exp-card:hover {
+  box-shadow:
+    -12px 24px 60px rgba(0,0,0,0.6),
+    0 0 24px rgba(0,210,255,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.stats-big-card:hover {
+  box-shadow:
+    0 28px 70px rgba(0,0,0,0.6),
+    0 0 28px rgba(0,210,255,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.award-card:hover {
+  box-shadow:
+    0 22px 55px rgba(0,0,0,0.55),
+    0 0 20px rgba(255,200,0,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* ── 3D stat cards (standalone JS-free tilt) ── */
+.stat-card {
+  transition: transform 0.2s ease, border-color 0.3s, box-shadow 0.2s;
+}
+.stat-card:hover {
+  transform: perspective(400px) rotateX(-8deg) rotateY(8deg) translateZ(12px);
+  box-shadow: 8px 16px 40px rgba(0,0,0,0.5), 0 0 16px rgba(0,210,255,0.12);
+  border-color: var(--border-glow);
+}
+
+/* ── 3D skill tags ── */
+.skill-tag {
+  transition: transform 0.2s ease, box-shadow 0.2s;
+}
+.skill-tag:hover {
+  transform: perspective(150px) rotateX(-12deg) translateZ(10px) translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.45), 0 3px 10px rgba(0,210,255,0.25);
+}
+
+/* ── 3D nav logo ── */
+.nav-logo {
+  display: inline-block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: default;
+}
+.nav-logo:hover {
+  transform: perspective(300px) rotateY(-18deg) rotateX(6deg) translateZ(8px);
+  filter: drop-shadow(4px 2px 10px rgba(0,210,255,0.6));
+}
+
+/* ── 3D buttons ── */
+.btn-primary {
+  transition: transform 0.15s ease, box-shadow var(--transition), background var(--transition);
+}
+.btn-primary:hover {
+  transform: perspective(500px) rotateX(-6deg) translateZ(10px) translateY(-2px);
+  box-shadow:
+    0 14px 36px rgba(0,210,255,0.45),
+    0 5px 0 rgba(0,80,160,0.7),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+}
+.btn-primary:active {
+  transform: perspective(500px) rotateX(3deg) translateZ(-3px) translateY(2px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4), 0 1px 0 rgba(0,80,160,0.5);
+}
+.btn-ghost {
+  transition: transform 0.15s ease, box-shadow var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn-ghost:hover {
+  transform: perspective(500px) rotateX(-6deg) translateZ(10px) translateY(-2px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.45), 0 5px 0 rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.btn-ghost:active {
+  transform: perspective(500px) rotateX(3deg) translateZ(-3px) translateY(2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* ── 3D experience dot ── */
+.exp-dot {
+  transition: transform 0.35s ease, box-shadow 0.35s;
+}
+.exp-item:hover .exp-dot {
+  transform: perspective(200px) rotateY(30deg) rotateX(-18deg) scale(1.1);
+  box-shadow: -6px 8px 24px rgba(0,0,0,0.55), 0 0 24px rgba(0,210,255,0.35);
+}
+
+/* ── 3D architecture layers ── */
+.arch-layer {
+  transition: transform 0.2s ease, box-shadow 0.2s;
+}
+.arch-layer:hover {
+  transform: perspective(700px) rotateY(-10deg) translateX(10px) translateZ(12px);
+  box-shadow: -10px 12px 40px rgba(0,0,0,0.5), 0 0 16px rgba(0,210,255,0.12);
+}
+
+/* ── 3D contact items ── */
+.contact-item {
+  transition: transform 0.2s ease, border-color var(--transition), background var(--transition), box-shadow 0.2s;
+}
+.contact-item:hover {
+  transform: perspective(700px) rotateY(-5deg) translateX(10px) translateZ(8px);
+  box-shadow: -8px 10px 30px rgba(0,0,0,0.4), 0 0 12px rgba(0,210,255,0.1);
+}
+
+/* ── Floating particles ── */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particleFloat var(--pdur, 8s) ease-in-out var(--pdelay, 0s) infinite;
+}
+@keyframes particleFloat {
+  0%,100% { transform: translateY(0)    scale(1);   opacity: 0.25; }
+  50%      { transform: translateY(-45px) scale(1.3); opacity: 0.65; }
+}
+
+/* ── Disable heavy 3D on touch devices ── */
+@media (hover: none) {
+  .hero-card-main  { animation: none !important; }
+  .stat-card:hover { transform: none; }
+  .skill-tag:hover { transform: translateY(-2px) scale(1.04); }
+  .nav-logo:hover  { transform: none; filter: none; }
+  .btn-primary:hover, .btn-ghost:hover { transform: translateY(-2px); }
+  .exp-item:hover .exp-dot { transform: scale(1.05); }
+  .arch-layer:hover { transform: translateX(6px); }
+  .contact-item:hover { transform: translateX(6px); }
+}
+
 /* ─── HAMBURGER BUTTON ─── */
 .mobile-menu-btn {
   display: none;
@@ -828,9 +1048,9 @@ footer {
     <p class="sec-desc">A curated stack of automation tools, languages, and frameworks — each battle-tested across enterprise projects.</p>
     <div class="skills-grid">
       <div class="skill-group fade-in fade-in-1" style="--group-color: linear-gradient(90deg, var(--accent-cyan), #3a7bd5);">
-        <div class="skill-group-icon">☕</div>
-        <div class="skill-group-title">Languages</div>
-        <div class="skill-group-label">Core Programming</div>
+        <div class="skill-group-icon"><div class="card-glare"></div>☕</div>
+        <div class="skill-group-title"><div class="card-glare"></div>Languages</div>
+        <div class="skill-group-label"><div class="card-glare"></div>Core Programming</div>
         <div class="skill-items">
           <span class="skill-pill">Core Java</span>
           <span class="skill-pill">SQL</span>
@@ -839,9 +1059,9 @@ footer {
         </div>
       </div>
       <div class="skill-group fade-in fade-in-2" style="--group-color: linear-gradient(90deg, var(--accent-purple), #a78bfa);">
-        <div class="skill-group-icon">🤖</div>
-        <div class="skill-group-title">Automation Tools</div>
-        <div class="skill-group-label">Test Execution</div>
+        <div class="skill-group-icon"><div class="card-glare"></div>🤖</div>
+        <div class="skill-group-title"><div class="card-glare"></div>Automation Tools</div>
+        <div class="skill-group-label"><div class="card-glare"></div>Test Execution</div>
         <div class="skill-items">
           <span class="skill-pill">Selenium WebDriver</span>
           <span class="skill-pill">Playwright</span>
@@ -852,9 +1072,9 @@ footer {
         </div>
       </div>
       <div class="skill-group fade-in fade-in-3" style="--group-color: linear-gradient(90deg, var(--accent-green), #00cc6a);">
-        <div class="skill-group-icon">🏛️</div>
-        <div class="skill-group-title">Frameworks & Patterns</div>
-        <div class="skill-group-label">Architecture</div>
+        <div class="skill-group-icon"><div class="card-glare"></div>🏛️</div>
+        <div class="skill-group-title"><div class="card-glare"></div>Frameworks & Patterns</div>
+        <div class="skill-group-label"><div class="card-glare"></div>Architecture</div>
         <div class="skill-items">
           <span class="skill-pill">Page Object Model</span>
           <span class="skill-pill">Data-Driven</span>
@@ -864,9 +1084,9 @@ footer {
         </div>
       </div>
       <div class="skill-group fade-in fade-in-4" style="--group-color: linear-gradient(90deg, var(--accent-orange), #ff9f1c);">
-        <div class="skill-group-icon">☁️</div>
-        <div class="skill-group-title">DevOps & Cloud</div>
-        <div class="skill-group-label">CI/CD & Infrastructure</div>
+        <div class="skill-group-icon"><div class="card-glare"></div>☁️</div>
+        <div class="skill-group-title"><div class="card-glare"></div>DevOps & Cloud</div>
+        <div class="skill-group-label"><div class="card-glare"></div>CI/CD & Infrastructure</div>
         <div class="skill-items">
           <span class="skill-pill">GitHub</span>
           <span class="skill-pill">Bitbucket</span>
@@ -876,9 +1096,9 @@ footer {
         </div>
       </div>
       <div class="skill-group fade-in fade-in-5" style="--group-color: linear-gradient(90deg, #f59e0b, #fbbf24);">
-        <div class="skill-group-icon">🗂️</div>
-        <div class="skill-group-title">Test & Defect Management</div>
-        <div class="skill-group-label">Tools & Reporting</div>
+        <div class="skill-group-icon"><div class="card-glare"></div>🗂️</div>
+        <div class="skill-group-title"><div class="card-glare"></div>Test & Defect Management</div>
+        <div class="skill-group-label"><div class="card-glare"></div>Tools & Reporting</div>
         <div class="skill-items">
           <span class="skill-pill">JIRA</span>
           <span class="skill-pill">QMetry</span>
@@ -888,9 +1108,9 @@ footer {
         </div>
       </div>
       <div class="skill-group fade-in fade-in-1" style="--group-color: linear-gradient(90deg, #ec4899, #f43f5e);">
-        <div class="skill-group-icon">🧪</div>
-        <div class="skill-group-title">Testing Methodologies</div>
-        <div class="skill-group-label">Quality Engineering</div>
+        <div class="skill-group-icon"><div class="card-glare"></div>🧪</div>
+        <div class="skill-group-title"><div class="card-glare"></div>Testing Methodologies</div>
+        <div class="skill-group-label"><div class="card-glare"></div>Quality Engineering</div>
         <div class="skill-items">
           <span class="skill-pill">Functional Testing</span>
           <span class="skill-pill">Regression Testing</span>
@@ -915,7 +1135,7 @@ footer {
 
       <div class="exp-item fade-in fade-in-1">
         <div class="exp-dot">🏦</div>
-        <div class="exp-card">
+        <div class="exp-card"><div class="card-glare"></div>
           <div class="exp-header">
             <div>
               <div class="exp-company">Persistent Systems</div>
@@ -938,7 +1158,7 @@ footer {
 
       <div class="exp-item fade-in fade-in-2">
         <div class="exp-dot">🛒</div>
-        <div class="exp-card">
+        <div class="exp-card"><div class="card-glare"></div>
           <div class="exp-header">
             <div>
               <div class="exp-company">Tata Consultancy Services</div>
@@ -960,7 +1180,7 @@ footer {
 
       <div class="exp-item fade-in fade-in-3">
         <div class="exp-dot">🏗️</div>
-        <div class="exp-card">
+        <div class="exp-card"><div class="card-glare"></div>
           <div class="exp-header">
             <div>
               <div class="exp-company">Larsen & Toubro</div>
@@ -991,7 +1211,7 @@ footer {
     <p class="sec-desc">End-to-end automation systems designed for scale, maintainability, and real-world enterprise use.</p>
     <div class="projects-grid">
 
-      <div class="project-card fade-in fade-in-1">
+      <div class="project-card fade-in fade-in-1"><div class="card-glare"></div>
         <div class="project-top">
           <div class="project-icon">🎭</div>
           <span class="project-badge badge-pro">Professional</span>
@@ -1013,7 +1233,7 @@ footer {
         </ul>
       </div>
 
-      <div class="project-card fade-in fade-in-2">
+      <div class="project-card fade-in fade-in-2"><div class="card-glare"></div>
         <div class="project-top">
           <div class="project-icon">🥋</div>
           <span class="project-badge badge-pro">Professional</span>
@@ -1035,7 +1255,7 @@ footer {
         </ul>
       </div>
 
-      <div class="project-card fade-in fade-in-3">
+      <div class="project-card fade-in fade-in-3"><div class="card-glare"></div>
         <div class="project-top">
           <div class="project-icon">⚗️</div>
           <span class="project-badge badge-personal">Personal Project</span>
@@ -1061,7 +1281,7 @@ footer {
         </ul>
       </div>
 
-      <div class="project-card fade-in fade-in-4">
+      <div class="project-card fade-in fade-in-4"><div class="card-glare"></div>
         <div class="project-top">
           <div class="project-icon">🔥</div>
           <span class="project-badge badge-pro">Professional</span>
@@ -1175,32 +1395,32 @@ footer {
     <h2 class="sec-title">Numbers That <span style="color:var(--accent-cyan);">Matter</span></h2>
     <p class="sec-desc">Real metrics from real projects — quantified impact across 6+ years of quality engineering.</p>
     <div class="stats-section-grid">
-      <div class="stats-big-card fade-in fade-in-1">
+      <div class="stats-big-card fade-in fade-in-1"><div class="card-glare"></div>
         <div class="stats-big-num"><span class="counter-big" data-target="6">0</span>+</div>
         <div class="stats-big-label">Years of Experience</div>
         <div class="stats-sub">SDET / QA Engineering</div>
       </div>
-      <div class="stats-big-card fade-in fade-in-2">
+      <div class="stats-big-card fade-in fade-in-2"><div class="card-glare"></div>
         <div class="stats-big-num"><span class="counter-big" data-target="90">0</span>%</div>
         <div class="stats-big-label">Manual Effort Reduced</div>
         <div class="stats-sub">Automation ROI at Kroger</div>
       </div>
-      <div class="stats-big-card fade-in fade-in-3">
+      <div class="stats-big-card fade-in fade-in-3"><div class="card-glare"></div>
         <div class="stats-big-num"><span class="counter-big" data-target="80">0</span>%</div>
         <div class="stats-big-label">DB Validation Effort ↓</div>
         <div class="stats-sub">SQL/PL-SQL optimization</div>
       </div>
-      <div class="stats-big-card fade-in fade-in-4">
+      <div class="stats-big-card fade-in fade-in-4"><div class="card-glare"></div>
         <div class="stats-big-num"><span class="counter-big" data-target="99">0</span>%</div>
         <div class="stats-big-label">XPath Locator Accuracy</div>
         <div class="stats-sub">UI test stability at L&T</div>
       </div>
-      <div class="stats-big-card fade-in fade-in-5">
+      <div class="stats-big-card fade-in fade-in-5"><div class="card-glare"></div>
         <div class="stats-big-num"><span class="counter-big" data-target="3">0</span></div>
         <div class="stats-big-label">Frameworks Built From Scratch</div>
         <div class="stats-sub">Playwright · Karate · Selenium</div>
       </div>
-      <div class="stats-big-card fade-in fade-in-1">
+      <div class="stats-big-card fade-in fade-in-1"><div class="card-glare"></div>
         <div class="stats-big-num"><span class="counter-big" data-target="40">0</span>%</div>
         <div class="stats-big-label">QMA Score Boost</div>
         <div class="stats-sub">Quality Maturity Assessment</div>
@@ -1209,14 +1429,14 @@ footer {
 
     <h3 style="font-family:var(--font-display); font-weight:700; font-size:1.3rem; margin-bottom:24px;">🏆 Awards & Recognition</h3>
     <div class="awards-grid">
-      <div class="award-card fade-in fade-in-1">
+      <div class="award-card fade-in fade-in-1"><div class="card-glare"></div>
         <div class="award-icon">🥇</div>
         <div>
           <div class="award-title">Quality Maturity Boost Award</div>
           <div class="award-desc">Recognized for boosting team Quality Maturity Assessment (QMA) score by 40%, demonstrating exceptional quality improvement strategies and leadership in test governance.</div>
         </div>
       </div>
-      <div class="award-card fade-in fade-in-2">
+      <div class="award-card fade-in fade-in-2"><div class="card-glare"></div>
         <div class="award-icon">🌟</div>
         <div>
           <div class="award-title">Client Appreciation Award</div>
@@ -1367,18 +1587,105 @@ navLinksWrap.querySelectorAll('.nav-link').forEach(link => {
   });
 });
 
-// ─── SUBTLE CARD TILT EFFECT ───
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    card.style.transform = `perspective(800px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-6px)`;
+// ═══════════════════════════════════════
+// 3D EFFECTS
+// ═══════════════════════════════════════
+const isTouch = !window.matchMedia('(hover: hover)').matches;
+
+// ── Universal 3D card tilt ──
+if (!isTouch) {
+  const tiltCards = document.querySelectorAll(
+    '.skill-group, .highlight-card, .exp-card, .project-card, ' +
+    '.stats-big-card, .award-card, .arch-info-card, .contact-card'
+  );
+
+  tiltCards.forEach(card => {
+    const glare = card.querySelector('.card-glare');
+    const intensity = card.classList.contains('contact-card') ? 5 :
+                      card.classList.contains('highlight-card') ? 7 : 10;
+
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width  - 0.5;  // -0.5 … 0.5
+      const y = (e.clientY - rect.top)  / rect.height - 0.5;
+      card.style.transform =
+        `perspective(800px) rotateX(${-y * intensity}deg) rotateY(${x * intensity}deg) translateZ(12px)`;
+      // Move glare spot
+      if (glare) {
+        glare.style.setProperty('--gx', `${(x + 0.5) * 100}%`);
+        glare.style.setProperty('--gy', `${(y + 0.5) * 100}%`);
+      }
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = 'transform 0.45s cubic-bezier(0.23,1,0.32,1), box-shadow 0.45s ease';
+      setTimeout(() => { card.style.transition = ''; }, 460);
+    });
   });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
+}
+
+// ── Hero card deep tilt (follows mouse across whole viewport) ──
+if (!isTouch) {
+  const heroCard = document.querySelector('.hero-card-main');
+  document.addEventListener('mousemove', e => {
+    if (!heroCard) return;
+    const cx = (e.clientX / window.innerWidth  - 0.5);
+    const cy = (e.clientY / window.innerHeight - 0.5);
+    heroCard.style.animation = 'none';
+    heroCard.style.transform =
+      `perspective(900px) rotateX(${-cy * 10}deg) rotateY(${cx * 14}deg) translateZ(16px)`;
   });
-});
+}
+
+// ── Mouse parallax for background orbs ──
+if (!isTouch) {
+  const orb1 = document.querySelector('.bg-orb-1');
+  const orb2 = document.querySelector('.bg-orb-2');
+  const orb3 = document.querySelector('.bg-orb-3');
+  let px = 0, py = 0, tx = 0, ty = 0;
+
+  document.addEventListener('mousemove', e => {
+    tx = (e.clientX / window.innerWidth  - 0.5);
+    ty = (e.clientY / window.innerHeight - 0.5);
+  });
+
+  (function animateOrbs() {
+    px += (tx - px) * 0.04;
+    py += (ty - py) * 0.04;
+    const t = Date.now() / 1000;
+    if (orb1) orb1.style.transform = `translate(${px * 40}px, ${py * 30}px)`;
+    if (orb2) orb2.style.transform = `translate(${px * -60}px, ${py * -45}px) translateY(${Math.sin(t*0.8)*25}px)`;
+    if (orb3) orb3.style.transform = `translate(${px * 35}px, ${py * 55}px) translateY(${Math.sin(t*0.6)*20}px)`;
+    requestAnimationFrame(animateOrbs);
+  })();
+}
+
+// ── Floating 3D particles in bg canvas ──
+(function spawnParticles() {
+  const canvas = document.querySelector('.bg-canvas');
+  if (!canvas) return;
+  const colors = [
+    'rgba(0,210,255,0.6)', 'rgba(124,58,237,0.55)',
+    'rgba(0,255,136,0.5)', 'rgba(58,123,213,0.6)'
+  ];
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const s = Math.random() * 3.5 + 1;
+    Object.assign(p.style, {
+      width:      `${s}px`,
+      height:     `${s}px`,
+      left:       `${Math.random() * 100}%`,
+      top:        `${Math.random() * 100}%`,
+      background: colors[Math.floor(Math.random() * colors.length)],
+      filter:     s > 3 ? 'blur(1px)' : 'none',
+      '--pdur':   `${6 + Math.random() * 10}s`,
+      '--pdelay': `-${Math.random() * 10}s`,
+    });
+    canvas.appendChild(p);
+  }
+})();
 </script>
 </body>
 </html>
