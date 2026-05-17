@@ -44,20 +44,23 @@ export function Services() {
         </span>
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {services.map((svc, i) => (
-          <motion.div
-            key={i}
-            ref={(el) => { cardRefs.current[i] = el }}
-            className="svc-card bg-panel border border-accent/10 p-7 rounded-sm"
-            whileHover={{ y: -3, borderColor: 'rgba(0,229,255,0.2)' }}
-            transition={{ duration: 0.3 }}
-          >
-            <span className="text-3xl block mb-4">{svc.icon}</span>
-            <div className="font-bold text-[0.95rem] mb-2">{svc.name}</div>
-            <div className="text-[0.8rem] text-muted leading-relaxed">{svc.desc}</div>
-          </motion.div>
-        ))}
+      <div className="glass-blob-wrap">
+        <div className="glass-blob-pink" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" style={{ position: 'relative', zIndex: 1 }}>
+          {services.map((svc, i) => (
+            <motion.div
+              key={i}
+              ref={(el) => { cardRefs.current[i] = el }}
+              className="svc-card glass-card p-7"
+              transition={{ duration: 0.3 }}
+            >
+              <div className="glass-shimmer-line" />
+              <span className="text-3xl block mb-4">{svc.icon}</span>
+              <div className="font-bold text-[0.95rem] mb-2">{svc.name}</div>
+              <div className="text-[0.8rem] text-muted leading-relaxed">{svc.desc}</div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )

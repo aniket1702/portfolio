@@ -44,53 +44,52 @@ export function Projects() {
         </span>
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {projects.map((proj, i) => (
-          <motion.div
-            key={i}
-            ref={(el) => { cardRefs.current[i] = el }}
-            className="proj-card bg-panel border border-accent/10 rounded-sm overflow-hidden"
-            whileHover={{ y: -5, borderColor: 'rgba(0,229,255,0.25)' }}
-            transition={{ duration: 0.3 }}
-            style={{ boxShadow: 'none' }}
-          >
-            {/* Top banner */}
-            <div
-              className="h-36 flex items-center justify-center relative"
-              style={{
-                background: 'linear-gradient(135deg, rgba(0,229,255,.04), rgba(168,85,247,.06))',
-              }}
+      <div className="glass-blob-wrap">
+        <div className="glass-blob-pink" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" style={{ position: 'relative', zIndex: 1 }}>
+          {projects.map((proj, i) => (
+            <motion.div
+              key={i}
+              ref={(el) => { cardRefs.current[i] = el }}
+              className="proj-card glass-card"
+              transition={{ duration: 0.3 }}
             >
-              <div
-                className="absolute top-0 left-0 right-0 h-px"
-                style={{ background: `linear-gradient(90deg, var(--accent), var(--accent2))` }}
-              />
-              <span className="text-5xl opacity-70">{proj.emoji}</span>
-            </div>
+              <div className="glass-shimmer-line" />
 
-            {/* Body */}
-            <div className="p-6">
-              <div className="font-bold text-base mb-1">{proj.name}</div>
-              <div className="font-mono text-[0.6rem] tracking-wider text-accent3 uppercase mb-3">{proj.domain}</div>
-              <p className="text-[0.83rem] text-muted leading-relaxed mb-4">{proj.desc}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {proj.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-mono text-[0.6rem] px-2 py-0.5 rounded-sm"
-                    style={{
-                      color: 'var(--accent)',
-                      border: '1px solid rgba(0,229,255,0.12)',
-                      background: 'rgba(0,229,255,0.05)',
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
+              {/* Top banner */}
+              <div
+                className="h-36 flex items-center justify-center relative"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(0,229,255,.10), rgba(168,85,247,.14))',
+                }}
+              >
+                <span className="text-5xl opacity-80">{proj.emoji}</span>
               </div>
-            </div>
-          </motion.div>
-        ))}
+
+              {/* Body */}
+              <div className="p-6">
+                <div className="font-bold text-base mb-1">{proj.name}</div>
+                <div className="font-mono text-[0.6rem] tracking-wider text-accent3 uppercase mb-3">{proj.domain}</div>
+                <p className="text-[0.83rem] text-muted leading-relaxed mb-4">{proj.desc}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {proj.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-mono text-[0.6rem] px-2 py-0.5 rounded-sm"
+                      style={{
+                        color: 'var(--accent)',
+                        border: '1px solid rgba(0,229,255,0.20)',
+                        background: 'rgba(0,229,255,0.09)',
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )

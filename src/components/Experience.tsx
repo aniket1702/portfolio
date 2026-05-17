@@ -50,10 +50,12 @@ export function Experience() {
         </span>
       </h2>
 
-      <div
-        className="relative pl-10"
-        style={{ borderLeft: '1px solid', borderImage: 'linear-gradient(var(--accent), var(--accent2), transparent) 1' }}
-      >
+      <div className="glass-blob-wrap">
+        <div className="glass-blob-pink" />
+        <div
+          className="relative pl-10"
+          style={{ borderLeft: '1px solid', borderImage: 'linear-gradient(var(--accent), var(--accent2), transparent) 1', position: 'relative', zIndex: 1 }}
+        >
         {experience.map((exp, i) => {
           const color = colorVars[exp.color]
           return (
@@ -74,8 +76,9 @@ export function Experience() {
 
               {/* Card */}
               <div
-                className="bg-panel border border-accent/10 p-8 rounded-sm transition-all duration-300 hover:border-accent/25 hover:translate-x-1"
+                className="exp-glass-card p-8"
               >
+                <div className="glass-shimmer-line" />
                 <div className="flex flex-wrap justify-between items-start gap-3 mb-5">
                   <div>
                     <div className="text-xl font-bold mb-0.5">{exp.company}</div>
@@ -124,6 +127,7 @@ export function Experience() {
             </div>
           )
         })}
+        </div>
       </div>
     </section>
   )

@@ -51,7 +51,8 @@ export function About() {
         </div>
 
         <div
-          className="h-96 bg-panel border border-accent/10 rounded overflow-hidden rev"
+          className="h-96 glass-card rev"
+          style={{ borderRadius: '12px', overflow: 'hidden' }}
         >
           <AboutCanvas />
         </div>

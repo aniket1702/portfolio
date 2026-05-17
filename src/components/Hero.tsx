@@ -86,14 +86,14 @@ export function Hero() {
 
         {/* Left text */}
         <div
-          className="absolute left-6 md:left-14 top-1/2 -translate-y-1/2 z-20 pointer-events-none"
+          className="absolute left-6 md:left-14 top-[22%] md:top-1/2 md:-translate-y-1/2 z-20 pointer-events-none"
           style={{ opacity: textAlpha, transition: 'opacity 0.5s' }}
         >
           <div className="font-mono text-xs tracking-[3px] text-accent uppercase mb-2">Hello! I'm</div>
           <h1
             className="font-syne font-extrabold leading-[0.95]"
             style={{
-              fontSize: 'clamp(2.2rem, 4.5vw, 4rem)',
+              fontSize: 'clamp(2rem, 4.5vw, 4rem)',
               background: 'linear-gradient(160deg, #fff 30%, rgba(255,255,255,.45))',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -105,13 +105,13 @@ export function Hero() {
 
         {/* Right text */}
         <div
-          className="absolute right-6 md:right-14 top-1/2 -translate-y-1/2 z-20 pointer-events-none text-right"
+          className="absolute right-6 md:right-14 bottom-[26%] md:bottom-auto md:top-1/2 md:-translate-y-1/2 z-20 pointer-events-none text-right"
           style={{ opacity: textAlpha, transition: 'opacity 0.5s' }}
         >
           <div className="font-mono text-xs tracking-[3px] text-muted uppercase mb-2">6+ Years of Experience</div>
           <div
             className="font-syne font-extrabold leading-[0.95] text-accent"
-            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3rem)' }}
+            style={{ fontSize: 'clamp(1.4rem, 3.5vw, 3rem)' }}
           >
             <span
               className="block text-accent/30 transition-opacity duration-300"
