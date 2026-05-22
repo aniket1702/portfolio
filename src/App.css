@@ -1,0 +1,4 @@
+/* App-level resets — index.css handles global styles */
+.App {
+  position: relative;
+}

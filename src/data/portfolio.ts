@@ -1,149 +1,132 @@
-export const navLinks = [
-  { label: 'About', href: 'about' },
-  { label: 'Skills', href: 'skills' },
-  { label: 'Experience', href: 'experience' },
-  { label: 'Projects', href: 'projects' },
-  { label: 'Contact', href: 'contact' },
-]
 
-export const skills = {
-  'Automation & Testing': [
-    'Selenium WebDriver', 'Playwright', 'Karate BDD', 'TestNG',
-    'Rest Assured', 'Apache JMeter', 'Page Object Model',
-  ],
-  'Programming & Data': [
-    'Core Java', 'TypeScript', 'JavaScript', 'SQL / PL-SQL', 'Maven', 'Apache POI',
-  ],
-  'API & Messaging': [
-    'REST APIs', 'Kafka', 'Postman', 'Mailinator API', 'Microservices Testing',
-  ],
-  'DevOps & CI/CD': [
-    'Jenkins', 'GitHub Actions', 'BrowserStack', 'GitHub', 'Bitbucket',
-  ],
-  'Reporting & Management': [
-    'Allure Reports', 'Extent Reports', 'JIRA', 'QMetry', 'Rally',
-  ],
-}
+export const profile = {
+  name: "Aniket Maurya",
+  title: "SDET / QA Engineer",
+  tagline: "Building resilient test automation that ships code with confidence.",
+  summary:
+    "SDET with 6+ years engineering test frameworks for web & API platforms across BFSI, retail and supply-chain. I obsess over execution stability, signal-to-noise in test reports, and shipping fast without breaking trust.",
+  location: "Mumbai, India",
+  email: "aniketmaurya1702@gmail.com",
+  phone: "+91 7738306641",
+  linkedin: "https://www.linkedin.com/in/aniketmaurya1702/",
+  github: "https://github.com/aniket1702",
+  cv: "/aniket-maurya-cv.pdf",
+};
 
-export const marqueeItems = [
-  'Playwright', 'Selenium', 'Karate BDD', 'Java', 'TypeScript',
-  'TestNG', 'Kafka', 'JMeter', 'REST APIs', 'SQL', 'Jenkins',
-  'GitHub Actions', 'BrowserStack', 'Allure', 'JIRA', 'Microservices',
-]
+export const skillGroups = [
+  {
+    title: "Automation & Languages",
+    span: "lg:col-span-8",
+    items: [
+      "Core Java", "Selenium WebDriver", "Playwright", "TestNG",
+      "Karate BDD", "Maven", "Apache JMeter", "Apache POI",
+    ],
+    tone: "primary",
+  },
+  {
+    title: "Frameworks",
+    span: "lg:col-span-4",
+    items: ["POM Architecture", "Karate BDD", "Data-driven", "Hybrid"],
+    tone: "secondary",
+  },
+  {
+    title: "CI/CD & Version Control",
+    span: "lg:col-span-4",
+    items: ["GitHub", "Bitbucket", "Jenkins", "CI/CD Pipelines"],
+    tone: "secondary",
+  },
+  {
+    title: "Databases",
+    span: "lg:col-span-4",
+    items: ["SQL Server", "PL/SQL", "Data validation"],
+    tone: "secondary",
+  },
+  {
+    title: "Test & Defect Management",
+    span: "lg:col-span-4",
+    items: ["JIRA", "QMetry", "Rally", "Allure", "Extent Reports"],
+    tone: "secondary",
+  },
+];
+
+export const methodologies = [
+  "Functional", "Regression", "E2E", "Smoke", "Sanity",
+  "API", "Performance", "Load", "Stress", "Chaos",
+  "Database", "Messaging (Kafka)", "Cross-Browser (BrowserStack)",
+];
 
 export const experience = [
   {
-    company: 'Persistent Systems',
-    role: 'SDET / QA Automation Engineer',
-    domain: 'BFSI / Payment · Mastercard',
-    period: 'Sept 2024 – Present',
-    color: 'accent' as const,
-    points: [
-      'Designed scalable Playwright + Java + TestNG framework with POM and data-driven best practices',
-      'Automated OTP-based auth via Mailinator APIs, cutting manual intervention significantly',
-      'Optimized SQL/PL-SQL queries achieving 80% reduction in manual DB validation effort',
-      'Executed load and performance testing with Apache JMeter for B2B Offer Management System',
-      'Conducted chaos testing to evaluate system resilience under failure scenarios',
-      'Integrated Extent Reports for comprehensive stakeholder-facing execution dashboards',
+    company: "Persistent Systems",
+    role: "SDET — Mastercard (BFSI / Payments)",
+    period: "Sept 2024 — Present",
+    location: "On-site",
+    stack: ["Playwright", "Java", "TestNG", "JMeter", "SQL", "Mailinator"],
+    bullets: [
+      "Designed a scalable Playwright + Java + TestNG framework with POM and data-driven layers; integrated Extent Reports.",
+      "Automated OTP-driven authentication flows using Mailinator APIs, eliminating manual gating in regression cycles.",
+      "Authored & tuned SQL / PL-SQL validation queries for BFSI dashboards and KPI reconciliation.",
+      "Ran performance, load & stress tests with JMeter against B2B OMS — monitored SLAs, throughput and response times.",
+      "Conducted chaos testing to validate resilience under degraded service conditions.",
     ],
-    tools: ['Playwright', 'Java', 'TestNG', 'SQL/PL-SQL', 'JMeter', 'Extent Reports'],
   },
   {
-    company: 'Tata Consultancy Services',
-    role: 'QA Automation Engineer',
-    domain: 'Retail Domain · The Kroger Co.',
-    period: 'May 2022 – Sept 2024',
-    color: 'accent2' as const,
-    points: [
-      'Led end-to-end API testing using Karate BDD framework across microservices',
-      'Built Karate API automation framework from scratch — scalable, maintainable, reusable',
-      'Implemented Kafka-based messaging validation for event-driven communication integrity',
-      'Contributed to Selenium POM framework improving execution stability by ~98%',
-      'Automated test suites reducing manual testing effort by 90%',
+    company: "Tata Consultancy Services",
+    role: "QA Engineer — The Kroger Co. (Retail)",
+    period: "May 2022 — Sept 2024",
+    location: "Mumbai",
+    stack: ["Karate BDD", "Selenium", "Kafka", "Java", "Maven"],
+    bullets: [
+      "Led end-to-end API testing programme using a Karate BDD framework I designed from scratch.",
+      "Implemented Kafka-based messaging validation across event-driven retail services.",
+      "Contributed to a Selenium POM UI automation framework — functional, regression, smoke & sanity suites.",
+      "Crafted resilient XPath locators with ~99% identification accuracy.",
     ],
-    tools: ['Karate BDD', 'Selenium', 'Kafka', 'Java', 'TestNG', 'JIRA'],
   },
   {
-    company: 'Larsen & Toubro',
-    role: 'QA Engineer',
-    domain: 'Supply Chain Management · OMP',
-    period: 'Dec 2019 – Mar 2022',
-    color: 'accent3' as const,
-    points: [
-      'Led testing of Spring Boot applications using Java, Maven, and TestNG',
-      'Designed reliable XPath locators achieving 99% accuracy in UI element identification',
-      'Managed full defect lifecycle in JIRA with full traceability',
-      'Boosted team QMA score by 40% through quality improvement strategies',
+    company: "Larsen & Toubro",
+    role: "QA Engineer — OMP (Supply Chain)",
+    period: "Dec 2019 — Mar 2022",
+    location: "Mumbai",
+    stack: ["Spring Boot", "Java", "TestNG", "Maven", "JIRA"],
+    bullets: [
+      "Owned testing of Spring Boot services — SDLC, STLC and defect lifecycle, end-to-end.",
+      "Authored detailed test scenarios and managed defect tracking & triage in JIRA.",
+      "Built and maintained a reliable XPath locator catalogue for UI suites.",
     ],
-    tools: ['Java', 'Selenium', 'Maven', 'TestNG', 'JIRA', 'Spring Boot'],
   },
-]
+];
 
 export const projects = [
   {
-    emoji: '🎭',
-    name: 'Playwright E2E Framework',
-    domain: 'BFSI · Mastercard',
-    desc: 'Scalable Playwright + Java + TestNG framework with POM architecture. OTP automation via Mailinator APIs and Extent Report dashboards.',
-    tags: ['Playwright', 'Java', 'TestNG', 'Extent Reports'],
-    gradient: 'from-accent to-accent2',
+    name: "Automation Framework",
+    tag: "OPEN SOURCE",
+    description:
+      "A production-grade Selenium + Java + TestNG framework with Allure reporting, QMetry integration, BrowserStack cross-browser execution, TestNG listeners, data providers, and Apache POI for excel-driven test data.",
+    tech: ["Java", "Selenium", "TestNG", "Maven", "Allure", "BrowserStack", "QMetry"],
+    link: "https://github.com/aniket1702",
   },
-  {
-    emoji: '⚡',
-    name: 'Karate API Framework',
-    domain: 'Retail · Kroger',
-    desc: 'Built from scratch — fully reusable Karate BDD API framework with Kafka event validation. 90% manual testing reduction.',
-    tags: ['Karate BDD', 'Kafka', 'REST APIs', 'Java'],
-    gradient: 'from-accent2 to-accent3',
-  },
-  {
-    emoji: '🗄️',
-    name: 'SQL Validation Suite',
-    domain: 'BFSI · Mastercard',
-    desc: 'Optimized SQL/PL-SQL queries for large dataset validation and KPI accuracy — 80% DB validation effort reduction.',
-    tags: ['SQL Server', 'PL-SQL', 'Data Validation'],
-    gradient: 'from-accent3 to-accent',
-  },
-  {
-    emoji: '🌐',
-    name: 'Selenium POM Framework',
-    domain: 'Personal · GitHub',
-    desc: 'Personal automation framework with Allure, Qmetry integration, BrowserStack cross-browser testing, and Apache POI data-driving.',
-    tags: ['Selenium', 'Allure', 'BrowserStack', 'Apache POI'],
-    gradient: 'from-accent to-accent2',
-  },
-  {
-    emoji: '🔥',
-    name: 'Performance & Chaos Suite',
-    domain: 'BFSI · B2B OMS',
-    desc: 'JMeter-based load, stress, and chaos testing validating scalability and SLA compliance under peak load conditions.',
-    tags: ['JMeter', 'Chaos Testing', 'Load Testing'],
-    gradient: 'from-accent2 to-accent',
-  },
-  {
-    emoji: '🔗',
-    name: 'Microservices Event Validator',
-    domain: 'Retail · Kroger',
-    desc: 'Kafka-based messaging validation ensuring data integrity and event-driven communication accuracy across distributed microservices.',
-    tags: ['Kafka', 'Event Validation', 'Microservices'],
-    gradient: 'from-accent3 to-accent2',
-  },
-]
+];
 
-export const services = [
-  { icon: '🤖', name: 'Test Automation', desc: 'End-to-end frameworks using Selenium, Playwright, and Karate BDD for web and API.' },
-  { icon: '🔌', name: 'API Automation', desc: 'Comprehensive API testing covering REST, Kafka messaging, and microservices validation.' },
-  { icon: '🏗️', name: 'Framework Dev', desc: 'Scalable POM frameworks from scratch with reporting, data-driving, and CI/CD hooks.' },
-  { icon: '⚙️', name: 'CI/CD Integration', desc: 'Test pipeline integration with Jenkins and GitHub Actions for continuous validation.' },
-  { icon: '🗄️', name: 'Database Testing', desc: 'Deep SQL/PL-SQL validation and backend verification for business-critical KPIs.' },
-  { icon: '📈', name: 'Performance Testing', desc: 'Load, stress, and chaos testing strategies using JMeter to validate scalability.' },
-  { icon: '📋', name: 'QA Strategy', desc: 'Test planning, risk coverage, defect management, and Agile QA process design.' },
-  { icon: '🔍', name: 'Quality Consulting', desc: 'QMA assessment, maturity improvement, and cross-functional quality elevation.' },
-]
+export const achievements = [
+  { value: "80%", label: "Manual validation effort reduced via SQL / PL-SQL optimisation" },
+  { value: "98%", label: "Execution stability gain through Selenium POM refactor" },
+  { value: "90%", label: "Manual testing eliminated by automating regression suites" },
+  { value: "99%", label: "Accuracy in UI element identification via XPath" },
+  { value: "40%", label: "Team QMA score boost — recognised by client" },
+];
 
-export const stats = [
-  { value: 6, label: 'Years Experience', suffix: '+' },
-  { value: 90, label: '% Manual Effort Reduced', suffix: '+' },
-  { value: 3, label: 'Major Domains', suffix: '+' },
-  { value: 80, label: '% DB Validation Cut', suffix: '+' },
-]
+export const education = [
+  {
+    school: "Vivekananda Education Society — Arts, Science & Commerce",
+    degree: "B.Sc — Information Technology",
+    period: "2016 — 2019",
+    score: "CGPA 8.75",
+  },
+  {
+    school: "Christ Academy Jr. College",
+    degree: "12th — Science",
+    period: "",
+    score: "57.25%",
+  },
+];
