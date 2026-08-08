@@ -57,9 +57,24 @@ export const methodologies = [
 
 export const experience = [
   {
+    company: "Accenture",
+    role: "QA Lead — Europcar Mobility Group (Travel / Mobility)",
+    period: "Sept 2024 — Present",
+    location: "On-site",
+    stack: ["Cucumber", "Karate", "Java", "TestNG", "JMeter", "SQL"],
+    bullets: [
+      "Managing and delivering end-to-end automation for Europcar's mobility platform.",
+      "Leading a team of QA engineers, ensuring adherence to best practices and quality standards.",
+      "Designing automtion test scripts for functional, regression testing using Cucumber and Karate frameworks.",
+      "Validate legacy and new features through SQL queries.",
+      "Validate the lifecycle of the vehicle mobility platform through API testing."
+
+    ],
+  },
+  {
     company: "Persistent Systems",
     role: "SDET — Mastercard (BFSI / Payments)",
-    period: "Sept 2024 — Present",
+    period: "Sept 2024 — May 2026",
     location: "On-site",
     stack: ["Playwright", "Java", "TestNG", "JMeter", "SQL", "Mailinator"],
     bullets: [
